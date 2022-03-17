@@ -21,96 +21,100 @@ import java.util.*
 
 class Menu_Screen_Page : AppCompatActivity() {
 
+    lateinit var myService: Shopping_Basket_Service
+
     var drinklist_array = mutableListOf<List<String>>()
     var drinklist_array2 = mutableListOf<List<String>>()
-    var final_price_payment : Int = 0
-    var arraysize : Int = drinklist_array.size
-    var myService: Shopping_Basket_Service? = null
+    var final_price_payment: Int = 0
+    var arraysize: Int = drinklist_array.size
     var isService = false
+
 
     override fun onStart() {
         super.onStart()
-        var intent = Intent(this, Shopping_Basket_Service::class.java)
-        bindService(intent, connection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menuscreen)
+        val connection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                val binder = service as Shopping_Basket_Service.MyBinder
+                myService = binder.getService()
+                isService = true
+                drinklist_array2 = myService.return_Shopping_Basket()
+                Log.d("test3", drinklist_array2.toString())
+            }
 
-        update_Menu_Screen("menu_coffee_jpg","menu_coffee_name","menu_coffee_price")
+            override fun onServiceDisconnected(name: ComponentName?) {
+                isService = false
+            }
+        }
+
+        var intent = Intent(this, Shopping_Basket_Service::class.java)
+        bindService(intent, connection, Context.BIND_AUTO_CREATE)
+
+        update_Menu_Screen("menu_coffee_jpg", "menu_coffee_name", "menu_coffee_price")
         menu_Select_Button()
-        try {
-            drinklist_array2 = myService!!.return_Shopping_Basket()
-            Log.d("test-처음 시작할 때",drinklist_array2.toString())
-        }
-        catch (e:NullPointerException){
-            Log.d("test - 실패 ㅠ","실패~")
-        }
-
-        // 여기서 바인드를 하면 두번 째 실행 때 장바구니가 초기화되는데 어떡하지? ㅠㅠㅠㅠㅠㅠㅠ
-        //바인드 서비스는 앱이 ondestroy 될 때 꺼짐, 그래서 startService 나 startForegroundService 를 써서 유지해야함
-        //유지는 그래서 했는데, 여기서 바인드를 한번 더 하면 장바구니가 초기화됨 어떡하지
-
-    }
-
-    fun setLanguage(lang:String) {
-        val locale = Locale(lang)
-        val config = resources.configuration
-
-        Locale.setDefault(locale)
-        config.setLocale(locale)
-        resources.updateConfiguration(config,resources.displayMetrics)
     }
 
     override fun onStop() {
         val intent = Intent(this, Shopping_Basket_Service::class.java)
-        startForegroundService(intent)
+        startService(intent)
         super.onStop()
-    }
-
-    val connection = object: ServiceConnection {
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            val binder = service as Shopping_Basket_Service.MyBinder
-            myService = binder.getService()
-            isService = true
-            drinklist_array2 = myService!!.shopping_basket
-            Log.d("test3",drinklist_array2.toString())
-
-            Log.d("test4", "연결되었습니다.")
-        }
-
-        override fun onServiceDisconnected(name: ComponentName?) {
-            isService = false
-        }
-    }
-
-    fun serviceBind() {
-        val intent = Intent(this, Shopping_Basket_Service::class.java)
-        bindService(intent, connection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onDestroy() {
         val intent = Intent(this, Shopping_Basket_Service::class.java)
-        startService(intent)
         super.onDestroy()
     }
 
-    fun serviceUnbind() {
-        if (isService) {
-            unbindService(connection)
-            isService = false
+    fun find_Final_Price(){
+        final_price_payment = 0
+        for (i in 0..drinklist_array2.size-1){
+            final_price_payment += drinklist_array2[i][7].toInt()
         }
     }
 
-
-
+//    fun menu_Update() {
+//
+//        Log.d("test4", drinklist_array2.size.toString())
+//
+//        val menu_name_text_params = LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams.WRAP_CONTENT,
+//            LinearLayout.LayoutParams.WRAP_CONTENT)
+//
+//        var shopping_basktet = findViewById<LinearLayout>(R.id.shopping_basktet_menu_list)
+//
+//        shopping_basktet.removeAllViews()
+//
+//    for (i in 0..drinklist_array2.size-1) {
+//
+//        final_price_payment += drinklist_array2[i][7].toInt()
+//
+//        if (drinklist_array2[i] != listOf<String>()) {
+//            val menu_name_text: TextView = TextView(this)
+//
+//            menu_name_text.setTextAppearance(R.style.boldStyle)
+//            menu_name_text.setTextColor(
+//                (getApplication().getResources().getColor(R.color.black))
+//            )
+//
+//            menu_name_text.layoutParams = menu_name_text_params
+//            menu_name_text.text =
+//                "${drinklist_array2[i][1]} ${drinklist_array2[i][2]}잔 , ${drinklist_array2[i][3]} , ${drinklist_array2[i][4]} ," +
+//                        " ${drinklist_array2[i][5]} , ${drinklist_array2[i][6]} , ${drinklist_array2[i][7]} 원"
+//
+//            shopping_basktet.addView(menu_name_text)
+//        }
+//    }
+//}
 
     fun put_Drink_In_Shopping_Basktet(drink_jpg : String ,drink_name : String , drink_number : String, drink_size : String,
                                       drink_temperature : String,
                                       extraperl :String, extraice :String, final_price : String, origin_price : String){
 
-        Log.d("adsfadfasfdsafsaef",drinklist_array2.toString())
+
         final_price_payment += final_price.toInt()
 
         var clickbutton = findViewById<Button>(R.id.paymentbutton)
@@ -334,6 +338,7 @@ class Menu_Screen_Page : AppCompatActivity() {
         }
 
         paybutton.setOnClickListener(){
+            find_Final_Price()
             println(final_price_payment)
             alertdialog.hide()
             var nextpage = Intent(this,Payment_Page::class.java)
@@ -813,7 +818,6 @@ class Menu_Screen_Page : AppCompatActivity() {
                 )
 
                 shopping_basktet.removeAllViews()
-                final_price_payment = 0
                 Log.d("오류나기 전", drinklist_array2.toString())
                 myService!!.size_Control()
                 drinklist_array2 = myService!!.return_Shopping_Basket()

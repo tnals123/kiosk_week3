@@ -15,32 +15,17 @@ import java.util.*
 
 class Login_Page : AppCompatActivity() {
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         var db = DataBase(this,"user_info.db",null,1)
         db.writableDatabase
         db.readableDatabase
-        Log.d("낭ㄴㅁ르이ㅏㅁㄹㅇㄴㅁ읾ㄴㅇㄹㅇ",":ㅁㄴㅇㄻㄴ이ㅑㄻ나롬ㅇ니라ㅓㅂㄴㅇㄹㄴ")
-        var datacontrol = DataBase_Control()
-        var writeabledb = db.writableDatabase
-        var readabledb = db.readableDatabase
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginpage)
         supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Login_Page_Fragment()).commit()
 
     }
-
-//    fun setLanguage() {
-//        val config = resources.configuration // 내부 리소스가 설계된 구성을 지정한다.
-//        val locale = Locale() // locale을 설정하는 코드. lang의 언어로 Locale이 설정된다.
-//        Locale.setDefault(locale)
-//        config.setLocale(locale)
-//        resources.updateConfiguration(config,resources.displayMetrics)
-//    }
 
     fun replace_Fragment(){
         supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Resister_Page_Fragment()).commit()
@@ -130,7 +115,7 @@ class Login_Page : AppCompatActivity() {
         var datacontrol = DataBase_Control()
         var readabledb = db.readableDatabase
         var writeabledb = db.writableDatabase
-        datacontrol.createaccount(writeabledb,"userinfo", listOf("id","pw","name","phone"), listOf(id,pw,name,phone))
+        datacontrol.createaccount(writeabledb,"userinfo", listOf("id","pw","name","phonenumber"), listOf(id,pw,name,phone))
         datacontrol.Check(readabledb,"userinfo")
         Toast.makeText(this, R.string.resister_ok , Toast.LENGTH_SHORT).show()
         replace_Fragment_To_Login()

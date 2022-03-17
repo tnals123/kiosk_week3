@@ -1,6 +1,7 @@
 package com.example.kiosk_gui
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.ComponentName
 import android.content.Context
@@ -20,7 +21,7 @@ class Shopping_Basket_Service : Service() {
     lateinit var channel_name : String
     lateinit var descriptionText : String
     lateinit var channel : NotificationChannel
-    var finalprice : Int = 0
+    lateinit var notificationManager: NotificationManager
 
     inner class MyBinder: Binder() {
         fun getService(): Shopping_Basket_Service {
@@ -37,34 +38,40 @@ class Shopping_Basket_Service : Service() {
     val binder = MyBinder()
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d("test1",shopping_basket.toString())
+
+        var finalprice : Int = 0
 
         channel_id = "mynotice"
         channel_name = "mynotice_name"
         descriptionText = ""
+
         size_Control()
+
+        var contentIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
+        var importance = NotificationManager.IMPORTANCE_DEFAULT
+
+        channel = NotificationChannel(channel_id,channel_name,importance).apply { description = descriptionText }
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+
         for (i in 0..shopping_basket.size-1){
             var asdf = shopping_basket[i][1]
             descriptionText = descriptionText + asdf + ", "
             finalprice+=shopping_basket[i][7].toInt()
         }
 
-        var importance = NotificationManager.IMPORTANCE_DEFAULT
-        channel = NotificationChannel(channel_id,channel_name,importance).apply { description = descriptionText }
-
         var notification = NotificationCompat.Builder(this,  "mynotice").
-        setSmallIcon(R.drawable.americano).setContentTitle("현재 장바구니입니다").setContentText(descriptionText + finalprice.toString() + "원").setOngoing(true)
+        setSmallIcon(R.drawable.americano).setContentTitle("현재 장바구니입니다")
+            .setContentText(descriptionText + finalprice.toString() + "원")
+            .setContentIntent(contentIntent).setPriority(NotificationCompat.PRIORITY_DEFAULT).build()
 
-        var notificationmanger : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationmanger.createNotificationChannel(channel)
-        notificationmanger.notify(1,notification.build())
+        startForeground(1,notification)
 
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onBind(intent: Intent): IBinder? {
 
-        Log.d("test5",shopping_basket.toString())
         return binder   // 클라이언트에 바인더 전달(Connection 콜백에서 수신 처리)
     }
 
