@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "login_id">Please enter your ID.</string>
+    <string name = "login_pw">Please enter your PW.</string>
+    <string name = "login_btn">LOGIN</string>
+    <string name = "resister_button">RESISTER</string>
+    <string name = "login_failed">The ID and password are different.</string>
+    <string name = "resister_id">Please enter your ID</string>
+    <string name = "resister_idcheck">check.</string>
+    <string name = "resister_idok">You can use this ID.</string>
+    <string name = "resister_idcheckfailed_duplicated">It is a duplicate ID</string>
+    <string name = "resister_idcheckfailed_tooshortorlong">The ID must be at least 5 characters and less than 10 characters</string>
+    <string name = "resister_pw">Please enter your password</string>
+    <string name = "resister_pwcheck">Please check the password</string>
+    <string name = "resister_pwcheckfailed_tooshortorlong">The password must be at least 5 characters and less than 10 characters</string>
+    <string name = "resister_pwcheckfailed_pwdifferent">The password is different!</string>
+    <string name = "resister_name">Please enter your name</string>
+    <string name = "resister_phone">Please check your phone number</string>
+    <string name = "resister_ok">Resister completed!</string>
+    <string name = "resister_failed">There is an empty form</string>
+    <string name = "resister_backbutton">back</string>
+    <string name = "resister_resisterbutton">resister</string>
+    <string name = "start_page_card">Card payment only</string>
+    <string name = "start_page_card_extra">Please use the counter for cash/coupon payments.</string>
+    <string name = "start_page_explain">Delicious drinks and bakeries.</string>
+    <string name = "start_page_explain_2">We will do our best to prepare it.</string>
+    <string name = "start_page_eat_in_market">Eat store.</string>
+    <string name = "start_page_pack">Packing</string>
+    <string name = "menu_screen_COFFEE">COFFEE</string>
+    <string name = "menu_screen_AID">AID</string>
+    <string name = "menu_screen_TEA">TEA</string>
+    <string name = "menu_screen_FLAT">FLAT</string>
+    <string name = "menu_screen_pay">Pay</string>
+    <string name = "menu_info">Coffee mixed with beans.</string>
+    <string name = "menu_info_size">SIZE</string>
+    <string name = "menu_info_not_free">NOT_FREE</string>
+    <string name = "menu_info_free">FREE</string>
+    <string name = "menu_info_cancel">CANCEL</string>
+    <string name = "menu_info_conform">CONFIRM</string>
+    <string name = "shopping_basket_title">It is a shopping basket.</string>
+    <string name = "shopping_basket_cancel">CANCEL</string>
+    <string name = "shopping_basket_pay">Pay</string>
+
+</resources>

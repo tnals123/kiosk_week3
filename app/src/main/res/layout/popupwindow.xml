@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="149dp">
+
+            <ImageView
+                android:id="@+id/drinkjpg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"></ImageView>
+
+            <LinearLayout
+                android:layout_width="223dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/title_and_explain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="111"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/drinkname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/startscreenfont"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/drink_explain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/startscreenfont"
+                        android:text="@string/menu_info"
+                        android:textSize="13sp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/number_and_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/minus_button"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/minus" />
+
+                    <TextView
+                        android:id="@+id/number_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"></TextView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/plus_button"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/plus"></androidx.appcompat.widget.AppCompatButton>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="₩"
+                        android:textColor="@color/blue"
+                        android:textSize="30sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/price_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="3700"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/hot_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="5"
+                android:background="@drawable/red_button"
+                android:fontFamily="@font/startscreenfont"
+                android:text="HOT"
+                android:textColor="@color/white"
+                android:textSize="30sp"></androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ice_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="5"
+                android:background="@drawable/blue_line"
+                android:fontFamily="@font/startscreenfont"
+                android:text="ICE"
+                android:textColor="@color/blue"
+                android:textSize="30sp"></androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/startscreenfont"
+                android:text="@string/menu_info_size"
+                android:textColor="@color/black"
+                android:textSize="25sp"></TextView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/regular_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/blue_button"
+                android:text="Regular"
+                android:textColor="@color/white"
+                android:textSize="17sp">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/extra_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/white_button"
+                android:text="Extra"
+                android:textColor="@color/blue"
+                android:textSize="17sp"></androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/black"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/startscreenfont"
+                android:text="@string/menu_info_not_free"
+               android:textColor="@color/black"
+                android:textSize="25sp">
+            </TextView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/extraperl"
+                android:layout_marginLeft="65dp"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@drawable/white_button"
+                android:text="펄 추가"
+                android:fontFamily="@font/startscreenfont"
+                android:textColor="@color/blue">
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/no_extraperl"
+                android:layout_marginLeft="2dp"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@drawable/blue_button"
+                android:text="추가 X"
+                android:textColor="@color/white"
+                android:fontFamily="@font/startscreenfont">
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/black"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/startscreenfont"
+                android:text="@string/menu_info_free"
+                android:textColor="@color/black"
+                android:textSize="25sp">
+            </TextView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/extraice"
+                android:layout_marginLeft="65dp"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@drawable/white_button"
+                android:text="얼음 추가"
+                android:fontFamily="@font/startscreenfont"
+                android:textColor="@color/blue">
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/no_extraice"
+                android:layout_marginLeft="2dp"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@drawable/blue_button"
+                android:text="추가 X"
+                android:textColor="@color/white"
+                android:fontFamily="@font/startscreenfont">
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/black"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/extra_order_cancel_button"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:text="@string/menu_info_cancel"
+                android:fontFamily="@font/startscreenfont"
+                android:textSize="25sp"
+                android:background="@drawable/black_button"
+                >
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/extra_order_submit_button"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="50dp"
+                android:text="@string/menu_info_conform"
+                android:fontFamily="@font/startscreenfont"
+                android:textSize="25sp"
+                android:background="@drawable/blue_button"
+                android:textColor="@color/white">
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

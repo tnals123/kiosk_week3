@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="bright_blue">#4040FF</color>
+    <color name="red">#FF0000</color>
+    <color name="bright_red">#FF4040</color>
+    <color name="gray">#808080</color>
+    <color name="color_dark_000000_ffffff">#000000</color>
+    <color name="color_dark_ffffff_000000">#ffffff</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name = "startpage_background">#FFFFFFFF</color>
+    <color name = "startpage_menubackground">#0000FF</color>
+    <color name = "startpage_buttonbackground">#FF6200EE</color>
+    <color name = "startpage_textcolor">#FFFFFFFF</color>
+    <color name = "startpage_title_1">#0000FF</color>
+    <color name = "startpage_title_2">#808080</color>
+
+    <color name = "settingpage_background">#FFFFFFFF</color>
+    <color name = "settingpage_textbackground">#FF000000</color>
+
+    <color name = "menuscreenpage_background">#FFFFFFFF</color>
+    <color name = "menuscreenpage_titlebackground">#FF000000</color>
+    <color name = "menuscreenpage_textcolor">#FFFFFFFF</color>
+
+    <color name = "popuppage_background">#FFFFFFFF</color>
+    <color name = "popuppage_textcolor">#FF000000</color>
+
+    <color name = "shoppingbasketpage_background">#FFFFFFFF</color>
+    <color name = "shoppingbasketpage_titlecolor">#FF0000</color>
+    <color name = "shoppingbasketpage_textcolor">#FF000000</color>
+    <color name = "shoppingbasketpage_textcolor_2">#0000FF</color>
+
+
+</resources>
+
+

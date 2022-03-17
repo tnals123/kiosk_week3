@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="menu_coffee_jpg" >
+        <item>@drawable/americano</item>
+        <item>@drawable/asspresso</item>
+        <item>@drawable/cafelatte</item>
+        <item>@drawable/cafemoca</item>
+        <item>@drawable/capuchino</item>
+        <item>@drawable/coldblue</item>
+        <item>@drawable/coldblue_creamnut</item>
+        <item>@drawable/coldblue_nitro</item>
+        <item>@drawable/coldblue_sugar</item>
+        <item>@drawable/kalamel_makkiatto</item>
+        <item>@drawable/mintmoka</item>
+        <item>@drawable/vanilalatte</item>
+        <item>@drawable/vanilalatte</item>
+        <item>@drawable/vanilalatte</item>
+        <item>@drawable/vanilalatte</item>
+        <item>@drawable/kalamel_makkiatto</item>
+        <item>@drawable/kalamel_makkiatto</item>
+        <item>@drawable/kalamel_makkiatto</item>
+
+    </array>
+    <array name="menu_coffee_name">
+        <item>아메리카노</item>
+        <item>에스프레소</item>
+        <item>카페라떼</item>
+        <item>카페모카</item>
+        <item>카푸치노</item>
+        <item>콜드브루</item>
+        <item>콜드부르 크림넛</item>
+        <item>콜드부르 2</item>
+        <item>콜드부르 흑당</item>
+        <item>캬라멜 마끼야또</item>
+        <item>민트모카</item>
+        <item>바닐라라떼</item>
+        <item>바닐라라떼</item>
+        <item>바닐라라떼</item>
+        <item>바닐라라떼</item>
+        <item>캬라멜 마끼야또</item>
+        <item>캬라멜 마끼야또</item>
+        <item>캬라멜 마끼야또</item>
+    </array>
+    <array name="menu_coffee_price">
+        <item>5000</item>
+        <item>5400</item>
+        <item>6100</item>
+        <item>3400</item>
+        <item>8400</item>
+        <item>1420</item>
+        <item>4330 </item>
+        <item>5100</item>
+        <item>8000</item>
+        <item>9000</item>
+        <item>4000</item>
+        <item>2500</item>
+        <item>2500</item>
+        <item>2500</item>
+        <item>2500</item>
+        <item>4330 </item>
+        <item>4330 </item>
+    </array>
+
+    <array name="asdf1" >
+        <item>@drawable/asspresso</item>
+        <item>@drawable/americano</item>
+        <item>@drawable/cafelatte</item>
+        <item>@drawable/cafemoca</item>
+        <item>@drawable/capuchino</item>
+        <item>@drawable/coldblue</item>
+        <item>@drawable/coldblue_creamnut</item>
+        <item>@drawable/coldblue_nitro</item>
+        <item>@drawable/coldblue_sugar</item>
+        <item>@drawable/kalamel_makkiatto</item>
+        <item>@drawable/mintmoka</item>
+        <item>@drawable/vanilalatte</item>
+    </array>
+    <array name="asdf2">
+        <item>아메리카노</item>
+        <item>vsevs</item>
+        <item>카페라떼</item>
+        <item>asdf</item>
+        <item>카푸치노</item>
+        <item>vsdv</item>
+        <item>wefw</item>
+        <item>콜드부르 2</item>
+        <item>콜드부르 흑당</item>
+        <item>캬라멜 마끼야또</item>
+        <item>민트모카</item>
+        <item>바닐라라떼</item>
+    </array>
+    <array name="asdf3">
+        <item>5000</item>
+        <item>5400</item>
+        <item>6100</item>
+        <item>3400</item>
+        <item>8400</item>
+        <item>1420</item>
+        <item>4330 </item>
+        <item>5100</item>
+        <item>8000</item>
+        <item>9000</item>
+        <item>4000</item>
+        <item>2500</item>
+    </array>
+</resources>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.google.android.gms.version"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/blue"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/startscreenfont"
+            android:text="EDIYA COFFEE"
+            android:textColor="@color/white"
+            android:textSize="23sp"></TextView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ediya_logo"></ImageView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/what_eat_button"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/coffeebutton"
+            android:layout_width="102dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/menuscreen_button_clicked"
+            android:textColor="@color/white"
+            android:fontFamily="@font/startscreenfont"
+            android:text="@string/menu_screen_COFFEE"></androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/aidbutton"
+            android:layout_width="102dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/menuscreen_button"
+            android:fontFamily="@font/startscreenfont"
+            android:text="@string/menu_screen_AID"></androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/teabutton"
+            android:layout_width="102dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/menuscreen_button"
+            android:fontFamily="@font/startscreenfont"
+            android:text="@string/menu_screen_TEA"></androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/flatbutton"
+            android:layout_width="102dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/menuscreen_button"
+            android:fontFamily="@font/startscreenfont"
+            android:text="@string/menu_screen_FLAT"></androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/menusectionscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/what_eat_button">
+
+        <LinearLayout
+            android:id="@+id/menusection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shopping_basktet"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/blue">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="295dp"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/shopping_basktet_menu_list"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@id/shopping_basktet"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.144"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/shopping_basktet"></LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:layout_width="70dp"
+            android:id="@+id/paymentbutton"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toEndOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteY="16dp"
+            android:text="@string/menu_screen_pay"
+            android:textSize="17sp"
+            android:fontFamily="@font/startscreenfont"
+            android:textStyle="bold"
+            android:background="@drawable/blue_button"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
