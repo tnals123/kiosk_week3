@@ -13,14 +13,9 @@ class DataBase(context: Context? ,  name : String , factory : SQLiteDatabase.Cur
         val asmode : String = "CREATE TABLE IF NOT EXISTS setting(seq INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 1 ,dark_mode TEXT DEFAULT 'basic')"
         val history : String = "CREATE TABLE IF NOT EXISTS history(seq INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT , name TEXT , num TEXT , price TEXT)"
 
-        Log.d("안녀앙아녕앙낭냐얀ㅇ","adfs")
-        Log.d("sefsdf","ewfsf")
-        Log.d("sdfef","xcv")
-
         database!!.execSQL(sql)
         database.execSQL(asmode)
         database.execSQL(history)
-
 
     }
 

@@ -34,16 +34,12 @@ class Setting : AppCompatActivity() {
         basicbutton.setOnClickListener(){
             var asdf = db_2.writableDatabase
             var zxcv = db_2.readableDatabase
-            var qwefasd = datacontrol.Check2(zxcv,"setting")
-            Log.d("test",qwefasd.toString())
-//            ThemeManager.applyTheme(ThemeManager.ThemeMode.DEFAULT)
+            ThemeManager.applyTheme(ThemeManager.ThemeMode.DEFAULT)
         }
         darkbutton.setOnClickListener(){
             var asdf = db_2.writableDatabase
             var zxcv = db_2.readableDatabase
-            var qwefasd = datacontrol.Check2(zxcv,"setting")
-            Log.d("test",qwefasd.toString())
-//            ThemeManager.applyTheme(ThemeManager.ThemeMode.DARK)
+            ThemeManager.applyTheme(ThemeManager.ThemeMode.DARK)
         }
 
         koreanbutton.setOnClickListener(){

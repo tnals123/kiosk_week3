@@ -75,6 +75,10 @@ class Shopping_Basket_Service : Service() {
         return binder   // 클라이언트에 바인더 전달(Connection 콜백에서 수신 처리)
     }
 
+    fun cleaning_Basket(){
+        shopping_basket = mutableListOf<List<String>>()
+    }
+
     fun put_In_Shopping_Basket(intent: Intent){
 
         val data1 = intent!!.getBundleExtra("drinkinfomation")

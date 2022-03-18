@@ -41,4 +41,36 @@
     <string name = "shopping_basket_cancel">CANCEL</string>
     <string name = "shopping_basket_pay">Pay</string>
 
+    <string name = "payment_page_pay">settlement amount</string>
+    <string name = "payment_page_pay_back">back</string>
+    <string name = "payment_page_pay_front">next</string>
+    <string name = "payment_page1_info">Please choose how to save Ediya members!</string>
+    <string name = "payment_page1_1">number accumulation</string>
+    <string name = "payment_page1_2">barcod accumulation</string>
+    <string name = "payment_page1_3">No saving.</string>
+    <string name = "payment_page2_info">Please select the payment method!</string>
+    <string name = "payment_page2_1">credit card payment</string>
+    <string name = "payment_page2_2">Members Ediya Card Payment</string>
+    <string name = "payment_page2_3">Payment by menu ticket/free coupon</string>
+    <string name = "payment_page2_4">Ediya Gift Card</string>
+    <string name = "payment_page2_info1">*Membership Ediya Card Payment Cash Receipt Settings</string>
+    <string name = "payment_page2_info2">Members APP > Settings > Please register the cash receipt issue information and use it.</string>
+    <string name = "first">Finish</string>
+    <string name = "findid">Find id</string>
+    <string name = "findpw">Find pw</string>
+    <string name = "goback">Go Back</string>
+    <string name = "findidpw">Find</string>
+    <string name = "history">History</string>
+    <string name = "find">It is not the ID of that information.</string>
+    <string name = "findsuc">your id id</string>
+    <string name = "findsuc2">this.</string>
+    <string name = "changeidfail">Please login first!</string>
+    <string name = "chanid">Change id</string>
+    <string name = "chanpw">Change pw</string>
+    <string name = "changeidpw">change id/pw</string>
+    <string name = "changeid">Please write your new id!</string>
+    <string name = "changeidcheck">Please check your new id!</string>
+    <string name = "changepw">Please write your new pw!</string>
+    <string name = "changepwcheck">Please check your new pw!</string>
+
 </resources>

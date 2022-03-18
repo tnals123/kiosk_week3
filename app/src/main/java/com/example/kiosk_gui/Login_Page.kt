@@ -15,6 +15,8 @@ import java.util.*
 
 class Login_Page : AppCompatActivity() {
 
+    lateinit var seq: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         var db = DataBase(this,"user_info.db",null,1)
@@ -33,6 +35,19 @@ class Login_Page : AppCompatActivity() {
 
     fun replace_Fragment_To_Login(){
         supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Login_Page_Fragment()).commit()
+    }
+    fun replace_Fragment_To_Id_Find(){
+        supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Find_Id_Fragment()).commit()
+    }
+    fun replace_Fragment_To_Pw_Find(){
+        supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Find_Pw_Fragment()).commit()
+    }
+    fun replace_Fragment_To_Id_Change(){
+        supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Change_myId_Fragment()).commit()
+    }
+
+    fun return_seq() : String {
+        return seq
     }
 
     fun Login(id : String, pw : String){
@@ -55,6 +70,25 @@ class Login_Page : AppCompatActivity() {
             startActivity(intent)
             }
         }
+
+    fun Login_For_Change(id : String, pw : String){
+        var db = DataBase(this,"user_info.db",null,1)
+        var db2 = DataBase(this,"user_info.db",null,1)
+        var datacontrol = DataBase_Control()
+
+        var readabledb = db.readableDatabase // 데이터베이스 객체를 읽기 가능한 상황으로로
+        var islogin = datacontrol.readaccount(readabledb, "userinfo", listOf("id","pw"), listOf(id,pw))
+        var asdf = datacontrol.Check(readabledb, "userinfo")
+        Log.d("로그인",asdf.toString())
+        seq = asdf[0][0]
+
+        if(islogin.size == 0){
+            Toast.makeText(this, R.string.login_failed, Toast.LENGTH_SHORT).show()
+        }
+        else {
+            supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Change_myId_Fragment()).commit()
+        }
+    }
 
     fun resister_Id_Check(id : String , idedit : EditText){
 
@@ -119,6 +153,48 @@ class Login_Page : AppCompatActivity() {
         datacontrol.Check(readabledb,"userinfo")
         Toast.makeText(this, R.string.resister_ok , Toast.LENGTH_SHORT).show()
         replace_Fragment_To_Login()
+    }
+
+    fun find_Id(name : String,phone : String){
+
+        var db = DataBase(this,"user_info.db",null,1)
+        var datacontrol = DataBase_Control()
+        var readabledb = db.readableDatabase
+        var array = datacontrol.readaccount(readabledb,"userinfo", listOf("name","phonenumber"),
+            listOf(name,phone))
+
+        if (array.size == 0){
+            Toast.makeText(this, R.string.find, Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(this, "your id is ${array[0][1]}", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    fun find_Pw(id : String){
+
+        var db = DataBase(this,"user_info.db",null,1)
+        var datacontrol = DataBase_Control()
+        var readabledb = db.readableDatabase
+        var array = datacontrol.readaccount(readabledb,"userinfo", listOf("id"),
+            listOf(id))
+
+        if (array.size == 0){
+            Toast.makeText(this, R.string.find, Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(this, "your pw is ${array[0][1]}", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    fun change_Id(id : String, seq : String){
+        var db = DataBase(this,"user_info.db",null,1)
+        var datacontrol = DataBase_Control()
+        var writeable = db.writableDatabase
+        datacontrol.updateaccount(writeable,"userinfo", listOf("id"), listOf(id),seq)
+        Toast.makeText(this, "아이디를 바꿨어요" , Toast.LENGTH_SHORT).show()
     }
 
 }
