@@ -38,7 +38,7 @@ class Login_Page_Fragment : Fragment() {
         loginbutton.setOnClickListener(){
             var id = myview.findViewById<EditText>(R.id.idedit).text.toString()
             var pw = myview.findViewById<EditText>(R.id.pwedit).text.toString()
-            (activity as Login_Page).Login(id,pw)
+            (activity as Login_Page).Login_Api(id,pw)
         }
         changeid.setOnClickListener(){
             var id = myview.findViewById<EditText>(R.id.idedit).text.toString()

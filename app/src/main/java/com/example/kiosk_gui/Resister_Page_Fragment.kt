@@ -45,7 +45,7 @@ class Resister_Page_Fragment : Fragment() {
                 Toast.makeText(activity, R.string.resister_failed, Toast.LENGTH_SHORT).show()
             }
             else{
-                (activity as Login_Page).Resister(id.text.toString(),pw.text.toString(),name.text.toString(), phone.text.toString())
+                (activity as Login_Page).resister_Api(id.text.toString(),pw.text.toString(),name.text.toString(), phone.text.toString())
             }
         }
 

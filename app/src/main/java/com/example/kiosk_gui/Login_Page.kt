@@ -11,6 +11,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.stageus_week3.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class Login_Page : AppCompatActivity() {
@@ -29,10 +33,60 @@ class Login_Page : AppCompatActivity() {
 
     }
 
+    fun resister_Api(id : String , pw : String , name : String , contact : String) {
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        var params: HashMap<String, Any> = HashMap<String, Any>()
+        params.put("id", id)
+        params.put("pw", pw)
+        params.put("name", name)
+        params.put("contact", contact)
+
+        var requestloginapi = retrofit.create(RetrofitClient.resisterApi::class.java)
+        requestloginapi.connectRequest(parameters = params)
+            .enqueue(object : Callback<RetrofitClient.resisterdata> {
+                override fun onFailure(call: Call<RetrofitClient.resisterdata>, t: Throwable) {
+                }
+
+                override fun onResponse(
+                    call: Call<RetrofitClient.resisterdata>,
+                    response: Response<RetrofitClient.resisterdata>
+
+                ) {
+                    Toast.makeText(this@Login_Page, "가입 완료!", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    fun Login_Api(id : String, pw : String) {
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.loginApi::class.java)
+        requestloginapi.getLogin(id, pw).enqueue(object : Callback<RetrofitClient.logindata> {
+            override fun onFailure(call: Call<RetrofitClient.logindata>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.logindata>,
+                response: Response<RetrofitClient.logindata>
+            ) {
+                Log.d("result", response.body()!!.message)
+                Log.d("result", response.body()!!.success.toString())
+                var intent = Intent(this@Login_Page, MainActivity::class.java)
+                startActivity(intent)
+
+            }
+        })
+    }
+
+
     fun replace_Fragment(){
         supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Resister_Page_Fragment()).commit()
     }
-
     fun replace_Fragment_To_Login(){
         supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Login_Page_Fragment()).commit()
     }

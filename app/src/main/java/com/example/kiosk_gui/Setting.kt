@@ -16,7 +16,6 @@ import java.util.*
 
 class Setting : AppCompatActivity() {
 
-    var db_2 = DataBase_2(this,"user_setting_db",null,1)
     var datacontrol = DataBase_Control()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +31,9 @@ class Setting : AppCompatActivity() {
         var darkbutton = findViewById<RadioButton>(R.id.dark)
 
         basicbutton.setOnClickListener(){
-            var asdf = db_2.writableDatabase
-            var zxcv = db_2.readableDatabase
             ThemeManager.applyTheme(ThemeManager.ThemeMode.DEFAULT)
         }
         darkbutton.setOnClickListener(){
-            var asdf = db_2.writableDatabase
-            var zxcv = db_2.readableDatabase
             ThemeManager.applyTheme(ThemeManager.ThemeMode.DARK)
         }
 
