@@ -12,7 +12,7 @@ object RetrofitClient {
 
     fun initRetrofit() : Retrofit{
 
-        var url = "http://3.35.214.92:3000" // 벡엔드 서버 주소
+        var url = "http://52.79.157.214:3000" // 벡엔드 서버 주소
         var gson = Gson()                   // 서버와 주고받을 데이터 형식
         var clientBuilder = OkHttpClient.Builder().build() // http 통신 규약을 사용하겠다!
         var connection = Retrofit.Builder()
@@ -26,11 +26,16 @@ object RetrofitClient {
     //받아온 데이터를 저장할 객체
     data class logindata(val message : String , val success : Boolean)
     data class resisterdata(val message : String , val success : Boolean)
+    data class logincheckdata(val message : String , val success : Boolean)
 
     // api 로 요청을 보내는 함수, api 마다 만들어야 함
     interface loginApi {
         @GET("/account/login")
         fun getLogin(@Query("id")id : String,@Query("pw")pw : String) : retrofit2.Call<logindata>
+    }
+    interface loginCheck {
+        @GET("/account/overlap")
+        fun getLoginCheck(@Query("id")id : String) : retrofit2.Call<logincheckdata>
     }
     interface resisterApi {
         @POST("/account")

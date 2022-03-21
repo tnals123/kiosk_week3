@@ -1,6 +1,7 @@
 package com.example.kiosk_gui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -27,7 +28,8 @@ class Resister_Page_Fragment : Fragment() {
         var idcheckbutton = myview.findViewById<Button>(R.id.idcheck)
 
         idcheckbutton.setOnClickListener(){
-            (activity as Login_Page).resister_Id_Check(id.text.toString(),id)
+            (activity as Login_Page).login_Check_Api(id.text.toString())
+
         }
 
         pwcheck.setOnClickListener(){

@@ -20,6 +20,7 @@ import java.util.*
 class Login_Page : AppCompatActivity() {
 
     lateinit var seq: String
+    var idok : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -32,6 +33,44 @@ class Login_Page : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.loginframelayout, Login_Page_Fragment()).commit()
 
     }
+
+    fun return_IsOk() : String{
+        return idok
+    }
+
+    fun login_Check_Api(id : String){
+
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.loginCheck::class.java)
+        requestloginapi.getLoginCheck(id).enqueue(object : Callback<RetrofitClient.logincheckdata> {
+            override fun onFailure(call: Call<RetrofitClient.logincheckdata>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.logincheckdata>,
+                response: Response<RetrofitClient.logincheckdata>
+            )  {
+                Log.d("result", response.body()!!.message)
+                Log.d("result", response.body()!!.success.toString())
+
+                if (response.body()!!.success.toString() == "true") {
+                    Toast.makeText(this@Login_Page, R.string.resister_idok, Toast.LENGTH_SHORT).show()
+
+
+                }
+                else {
+                    Toast.makeText(this@Login_Page, R.string.resister_idcheckfailed_duplicated, Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        })
+
+    }
+
 
     fun resister_Api(id : String , pw : String , name : String , contact : String) {
 
@@ -55,6 +94,7 @@ class Login_Page : AppCompatActivity() {
 
                 ) {
                     Toast.makeText(this@Login_Page, "가입 완료!", Toast.LENGTH_SHORT).show()
+                    replace_Fragment_To_Login()
                 }
             })
     }
@@ -76,8 +116,14 @@ class Login_Page : AppCompatActivity() {
             ) {
                 Log.d("result", response.body()!!.message)
                 Log.d("result", response.body()!!.success.toString())
-                var intent = Intent(this@Login_Page, MainActivity::class.java)
-                startActivity(intent)
+
+                if (response.body()!!.success.toString() == "true") {
+                    var intent = Intent(this@Login_Page, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else {
+                    Toast.makeText(this@Login_Page, R.string.login_failed, Toast.LENGTH_SHORT).show()
+                }
 
             }
         })
