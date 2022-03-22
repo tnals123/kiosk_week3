@@ -20,7 +20,7 @@ import java.util.*
 class Login_Page : AppCompatActivity() {
 
     lateinit var seq: String
-    var idok : String = ""
+    lateinit var idok : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -37,7 +37,6 @@ class Login_Page : AppCompatActivity() {
     fun return_IsOk() : String{
         return idok
     }
-
     fun login_Check_Api(id : String){
 
 
@@ -59,11 +58,12 @@ class Login_Page : AppCompatActivity() {
 
                 if (response.body()!!.success.toString() == "true") {
                     Toast.makeText(this@Login_Page, R.string.resister_idok, Toast.LENGTH_SHORT).show()
-
+                    idok = "true"
 
                 }
                 else {
                     Toast.makeText(this@Login_Page, R.string.resister_idcheckfailed_duplicated, Toast.LENGTH_SHORT).show()
+                    idok = "false"
                 }
 
             }

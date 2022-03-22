@@ -8,9 +8,51 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.stageus_week3.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Resister_Page_Fragment : Fragment() {
 
+    var idok = ""
+    var isbuttonClicked = ""
+
+    fun login_Check_Api(id : String){
+
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.loginCheck::class.java)
+        requestloginapi.getLoginCheck(id).enqueue(object : Callback<RetrofitClient.logincheckdata> {
+            override fun onFailure(call: Call<RetrofitClient.logincheckdata>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.logincheckdata>,
+                response: Response<RetrofitClient.logincheckdata>
+            )  {
+                Log.d("result", response.body()!!.message)
+                Log.d("result", response.body()!!.success.toString())
+
+                if (response.body()!!.success.toString() == "true") {
+                    Toast.makeText(activity, R.string.resister_idok, Toast.LENGTH_SHORT).show()
+                    idok = "true"
+                    isbuttonClicked = "true"
+
+                }
+                else {
+                    Toast.makeText(activity, R.string.resister_idcheckfailed_duplicated, Toast.LENGTH_SHORT).show()
+                    idok = "false"
+                    isbuttonClicked = "false"
+                }
+
+            }
+        })
+
+    }
 
     override fun onCreateView(inflater:LayoutInflater,container:ViewGroup?,savedInstanceState:Bundle?):View {
         //규칙임
@@ -28,8 +70,7 @@ class Resister_Page_Fragment : Fragment() {
         var idcheckbutton = myview.findViewById<Button>(R.id.idcheck)
 
         idcheckbutton.setOnClickListener(){
-            (activity as Login_Page).login_Check_Api(id.text.toString())
-
+            login_Check_Api(id.text.toString())
         }
 
         pwcheck.setOnClickListener(){
@@ -45,6 +86,9 @@ class Resister_Page_Fragment : Fragment() {
             if (id.text.toString() == "" || pw.text.toString() == "" || pwcheck.text.toString() == "" || name.text.toString() == "" ||
                     phone.text.toString() == ""){
                 Toast.makeText(activity, R.string.resister_failed, Toast.LENGTH_SHORT).show()
+            }
+            else if (isbuttonClicked != "true"){
+                Toast.makeText(activity, "아이디 중복체크를 안하셨어요", Toast.LENGTH_SHORT).show()
             }
             else{
                 (activity as Login_Page).resister_Api(id.text.toString(),pw.text.toString(),name.text.toString(), phone.text.toString())
