@@ -27,6 +27,9 @@ class Login_Page : AppCompatActivity() {
         var db = DataBase(this,"user_info.db",null,1)
         db.writableDatabase
         db.readableDatabase
+        get_Category_Api("kr")
+        get_Menu_Api("커피","kr")
+        get_History_Api("asdfasdf")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginpage)
@@ -38,7 +41,6 @@ class Login_Page : AppCompatActivity() {
         return idok
     }
     fun login_Check_Api(id : String){
-
 
         var retrofit = RetrofitClient.initRetrofit()
 
@@ -70,7 +72,6 @@ class Login_Page : AppCompatActivity() {
         })
 
     }
-
 
     fun resister_Api(id : String , pw : String , name : String , contact : String) {
 
@@ -124,6 +125,72 @@ class Login_Page : AppCompatActivity() {
                 else {
                     Toast.makeText(this@Login_Page, R.string.login_failed, Toast.LENGTH_SHORT).show()
                 }
+
+            }
+        })
+    }
+
+    fun get_Category_Api(lang: String) {
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.categoryApi::class.java)
+        requestloginapi.getCategory(lang).enqueue(object : Callback<RetrofitClient.categorydata> {
+            override fun onFailure(call: Call<RetrofitClient.categorydata>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.categorydata>,
+                response: Response<RetrofitClient.categorydata>
+            ) {
+                Log.d("result", response.body()!!.message)
+                Log.d("result", response.body()!!.success.toString())
+
+            }
+        })
+    }
+
+    fun get_Menu_Api(category_name : String,lang: String) {
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.menuApi::class.java)
+        requestloginapi.getMenu(category_name,lang).enqueue(object : Callback<RetrofitClient.menudata> {
+            override fun onFailure(call: Call<RetrofitClient.menudata>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.menudata>,
+                response: Response<RetrofitClient.menudata>
+            ) {
+                Log.d("result", response.body()!!.message)
+                Log.d("result", response.body()!!.success.toString())
+
+            }
+        })
+    }
+
+    fun get_History_Api(id : String) {
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.historyApi::class.java)
+        requestloginapi.getHistory(id).enqueue(object : Callback<RetrofitClient.historydata> {
+            override fun onFailure(call: Call<RetrofitClient.historydata>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.historydata>,
+                response: Response<RetrofitClient.historydata>
+            ) {
+                Log.d("result", response.body()!!.message)
+                Log.d("result", response.body()!!.success.toString())
 
             }
         })
