@@ -27,9 +27,6 @@ class Login_Page : AppCompatActivity() {
         var db = DataBase(this,"user_info.db",null,1)
         db.writableDatabase
         db.readableDatabase
-        get_Category_Api("kr")
-        get_Menu_Api("커피","kr")
-        get_History_Api("asdfasdf")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginpage)

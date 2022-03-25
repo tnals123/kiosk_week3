@@ -25,13 +25,11 @@ class Shopping_Basket_Service : Service() {
 
     inner class MyBinder: Binder() {
         fun getService(): Shopping_Basket_Service {
-            Log.d("test",shopping_basket.toString())
             return this@Shopping_Basket_Service
         }
     }
 
     override fun onCreate() {
-        Log.d("test","생성되었습니다")
         super.onCreate()
     }
 

@@ -15,23 +15,80 @@ import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import java.nio.BufferUnderflowException
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.stageus_week3.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.NullPointerException
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class Menu_Screen_Page : AppCompatActivity() {
 
     lateinit var myService: Shopping_Basket_Service
 
-    var drinklist_array = mutableListOf<List<String>>()
     var drinklist_array2 = mutableListOf<List<String>>()
     var final_price_payment: Int = 0
-    var arraysize: Int = drinklist_array.size
     var isService = false
+    var drink_array_kr = mutableListOf<String>()
 
+    fun get_Category_Api(lang: String) {
+
+        Log.d("asdfasdfasedf","asdfasdfasdf")
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.categoryApi::class.java)
+        requestloginapi.getCategory(lang).enqueue(object : Callback<RetrofitClient.categorydata> {
+            override fun onFailure(call: Call<RetrofitClient.categorydata>, t: Throwable) {
+                Log.d("ressefsdfaefult",t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.categorydata>,
+                response: Response<RetrofitClient.categorydata>
+            ) {
+                Log.d("dssgada", response.body()!!.data[0].toString())
+//                drink_array_kr = response.body()!!.data
+            }
+        })
+    }
+
+    fun get_Menu_Api(category_name : String,lang: String) {
+
+        var retrofit = RetrofitClient.initRetrofit()
+
+        //api 와 통신!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //enqueue 는 callback 함수임 비동기를 처리해주는 함수
+        var requestloginapi = retrofit.create(RetrofitClient.menuApi::class.java)
+        requestloginapi.getMenu(category_name,lang).enqueue(object : Callback<RetrofitClient.menudata> {
+            override fun onFailure(call: Call<RetrofitClient.menudata>, t: Throwable) {
+
+            }
+
+            override fun onResponse(
+                call: Call<RetrofitClient.menudata>,
+                response: Response<RetrofitClient.menudata>
+            ) {
+                val result = response.body()
+                Log.d("result", response.body()!!.message)
+                Log.d("result", response.body()!!.success.toString())
+                val rs: List<SponsorsResult>? = response.body()
+                Log.d("dssgada", response.body()!!.data[0].toString())
+                for (i in 0..response.body()!!.data.size-1){
+
+                }
+            }
+        })
+    }
 
     override fun onStart() {
         super.onStart()
+        get_Category_Api("kr")
+        get_Menu_Api("커피","kr")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +100,6 @@ class Menu_Screen_Page : AppCompatActivity() {
                 myService = binder.getService()
                 isService = true
                 drinklist_array2 = myService.return_Shopping_Basket()
-                Log.d("test3", drinklist_array2.toString())
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
@@ -53,6 +109,7 @@ class Menu_Screen_Page : AppCompatActivity() {
 
         var intent = Intent(this, Shopping_Basket_Service::class.java)
         bindService(intent, connection, Context.BIND_AUTO_CREATE)
+
 
         update_Menu_Screen("menu_coffee_jpg", "menu_coffee_name", "menu_coffee_price")
         menu_Select_Button()
@@ -75,40 +132,6 @@ class Menu_Screen_Page : AppCompatActivity() {
             final_price_payment += drinklist_array2[i][7].toInt()
         }
     }
-
-//    fun menu_Update() {
-//
-//        Log.d("test4", drinklist_array2.size.toString())
-//
-//        val menu_name_text_params = LinearLayout.LayoutParams(
-//            LinearLayout.LayoutParams.WRAP_CONTENT,
-//            LinearLayout.LayoutParams.WRAP_CONTENT)
-//
-//        var shopping_basktet = findViewById<LinearLayout>(R.id.shopping_basktet_menu_list)
-//
-//        shopping_basktet.removeAllViews()
-//
-//    for (i in 0..drinklist_array2.size-1) {
-//
-//        final_price_payment += drinklist_array2[i][7].toInt()
-//
-//        if (drinklist_array2[i] != listOf<String>()) {
-//            val menu_name_text: TextView = TextView(this)
-//
-//            menu_name_text.setTextAppearance(R.style.boldStyle)
-//            menu_name_text.setTextColor(
-//                (getApplication().getResources().getColor(R.color.black))
-//            )
-//
-//            menu_name_text.layoutParams = menu_name_text_params
-//            menu_name_text.text =
-//                "${drinklist_array2[i][1]} ${drinklist_array2[i][2]}잔 , ${drinklist_array2[i][3]} , ${drinklist_array2[i][4]} ," +
-//                        " ${drinklist_array2[i][5]} , ${drinklist_array2[i][6]} , ${drinklist_array2[i][7]} 원"
-//
-//            shopping_basktet.addView(menu_name_text)
-//        }
-//    }
-//}
 
     fun put_Drink_In_Shopping_Basktet(drink_jpg : String ,drink_name : String , drink_number : String, drink_size : String,
                                       drink_temperature : String,
@@ -292,18 +315,15 @@ class Menu_Screen_Page : AppCompatActivity() {
                 shoppingbasketservice.putExtra("deletenum",i)
 
                 var shopping_basktet = findViewById<LinearLayout>(R.id.shopping_basktet_menu_list)
-                Log.d("asdfasdf",i.toString())
                 var price = myService!!.delete_Menu_Price(shoppingbasketservice)
                 drinklist_array2 = myService!!.delete_Shopping_Basket(shoppingbasketservice)
 
                 final_price_payment -= price
 
-                Log.d("삭제 후 장바구니",drinklist_array2.toString())
 
                 shoppingbasketscreen.removeView(menusection)
 
                 shopping_basktet.removeAllViews()
-                arraysize = drinklist_array2.size
 
                 val menu_name_text_params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -818,11 +838,9 @@ class Menu_Screen_Page : AppCompatActivity() {
                 )
 
                 shopping_basktet.removeAllViews()
-                Log.d("오류나기 전", drinklist_array2.toString())
                 myService!!.size_Control()
                 drinklist_array2 = myService!!.return_Shopping_Basket()
                 for (i in 0..drinklist_array2.size-1) {
-                    Log.d("수정", drinklist_array2.toString())
                     final_price_payment += drinklist_array2[i][7].toInt()
 
                     if (drinklist_array2[i] != listOf<String>()) {
